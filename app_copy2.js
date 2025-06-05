@@ -37,8 +37,17 @@ rl.on('close', () => {
         return pair1[1].change - pair2[1].change;
     });
 
-    const rankingStrings = rankingArray.map(([key, value], i) => {
-        return `${i + 1}位 ${key}: ${value.before}=>${value.after} 変化率: ${value.change}`;
+    const rankingStrings = rankingArray.map(([key, value]) => {
+        return `${counter()}位 ${key}: ${value.before}=>${value.after} 変化率: ${value.change}`;
     })
     console.log(rankingStrings);
 });
+
+function createCounter() {
+    let count = 1;
+    return function() {
+        return count++;
+    }
+}
+
+const counter = createCounter();
